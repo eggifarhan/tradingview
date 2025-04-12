@@ -1,11 +1,15 @@
 from flask import Flask, request
+import logging
+
+# Setup logging supaya tampil di fly logs
+logging.basicConfig(level=logging.INFO)
 
 app = Flask(__name__)
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
-    print("📩 Received Webhook")
-    print(request.json)  # tampilkan data dari TradingView
+    logging.info("📩 Received Webhook")
+    logging.info(request.json)  # tampilkan data dari TradingView
     return "Webhook received", 200
 
 @app.route("/")
